@@ -1,0 +1,321 @@
+# A bit advanced applications of recursion, Come here after practicing enough easy questions.
+
+
+# def subseq(s):
+#     if len(s) == 0:
+#         output = []
+#         output.append('')
+#         return output
+#
+#     smallerString = s[1:]
+#     smallOutput = subseq(smallerString) #our assumption,
+#                                         # for 'abc' here it takes 'bc' and gives => smallList = ['',b,c,bc]
+#     output = []
+#     for sub in smallOutput:
+#         output.append(sub)
+#
+#     for sub in smallOutput:
+#         output.append(s[0] + sub)
+#     return output
+#
+#
+# s = 'abc'
+# print(subseq(s))
+
+
+# def getDigit(digit):
+#     if digit == 2:
+#         return 'abc'
+#     if digit == 3:
+#         return 'def'
+#     if digit == 4:
+#         return 'ghi'
+#     if digit == 5:
+#         return 'jkl'
+#     if digit == 6:
+#         return 'mno'
+#     if digit == 7:
+#         return 'pqrs'
+#     if digit == 8:
+#         return 'tuv'
+#     if digit == 9:
+#         return 'wxyz'
+#     else:
+#         return " "
+
+
+# def keypad(n):
+#     if n == 0:
+#         output = []
+#         output.append('')
+#         return output
+#
+#     smallInt = n // 10
+#     lastInt = n % 10
+#     smallOutput = keypad(smallInt)
+#
+#     lastdigitChars = getDigit(lastInt)
+#
+#     output = []
+#     for i in lastdigitChars:
+#         for j in smallOutput:
+#             comb = j+i
+#             output.append(comb)
+#     return output
+#
+#
+# n = 23
+# out = (keypad(n))
+# print(out)
+# print(len(out))
+
+
+#todo follow this method print output instead of returning (in one function itself)
+
+# def printfact(n,ans):
+#     if n == 0:
+#         print(ans)
+#         return  #todo this return is must else,it exceeds recursion depth
+#     ans = ans * n # dry run this , here from n we are taking back to 0 and there we are printing
+#     return printfact(n-1,ans)
+#
+# printfact(6,1)
+
+
+# def printSumDigits(n,ans):
+#     if n == 0:
+#         print(ans)
+#         return
+#     smallInt = n // 10
+#     rem = n % 10
+#     ans = ans + rem
+#     return printSumDigits(smallInt,ans)
+#
+# nt = 123456
+# printSumDigits(nt,0)
+
+
+# def printCountZeroes(n,ans):
+#     if n == 0:                     #doubt
+#         print(ans)
+#         return
+#     smallInt = n // 10
+#     rem = n % 10
+#     if rem == 0:
+#         ans = ans + 1
+#     return printCountZeroes(smallInt,ans)
+#
+#
+# n = 1000
+# printCountZeroes(n,0)
+
+
+# def printMinInArr(arr, ans=10000000):
+#     if len(arr) == 0:
+#         print(ans)
+#         return
+#     newMin = min(ans,arr[0])
+#     printMinInArr(arr[1:],newMin)
+
+    # if ind == len(arr)-1:                      #doubt using index method
+    #     print(ans)
+    #     return
+    # newMin = min(ans,arr[ind])
+    # return  printMinInArr(arr, ind+1, newMin)
+
+
+# a = [3, 4, 5,1]
+# printMinInArr(a)
+
+
+# def printSubseq(s, ans): #todo do dry run on paper
+#     if len(s) == 0:
+#         print(ans)
+#         return
+#     smallstr = s[1:]
+#     #dont include th char here
+#     printSubseq(smallstr,ans)
+#
+#     #here includ 0th char
+#     printSubseq(smallstr,ans+s[0])
+#
+#
+# s = 'abc'
+# printSubseq(s,'')
+
+
+# def printKeypad(n,ans):
+#     if n == 0:
+#         print(ans)
+#         return
+#
+#     smallInt = n // 10
+#     rem = n % 10
+#     charFromRem = getDigit(rem)
+#     for i in charFromRem:
+#         printKeypad(smallInt,i + ans)
+#
+# n = 23
+# printKeypad(n,'')
+
+
+#todo assignment (RECURSION-3)
+
+# def findSubsetsThatSumToKHelper(arr, ans, curSubset, k, ind):
+#     if(ind == len(arr)) :
+#         if(k == 0 and len(curSubset) != 0):
+#             ans.append(curSubset)
+#         return
+#
+#     # Case when we do not include the current element in the subset.
+#     curSubsetCopy = curSubset[:]
+#     findSubsetsThatSumToKHelper(arr, ans, curSubsetCopy, k, ind + 1)
+#
+#     # Case when we include the current element in the subset.
+#     curSubset.append(arr[ind])
+#     findSubsetsThatSumToKHelper(arr, ans, curSubset, k - arr[ind], ind + 1)
+#
+# def findSubsetsThatSumToK(arr, k) :
+#     # List to store the subsets that sum to k.
+#     ans = []
+#     # List to store the current subset.
+#     curSubset = []
+#     findSubsetsThatSumToKHelper(arr, ans, curSubset, k, 0)
+#     return ans
+#
+#
+# a = [2,1,1]
+# print(findSubsetsThatSumToK(a,2))
+
+
+# def subsetSumToK(arr,k):
+#     if len(arr)==0:
+#         if k == 0:
+#             return [[]]
+#         else:
+#             return []
+#
+#     output=[]
+#     if arr[0]<=k:
+#         temp2=subsetSumToK(arr[1:],k-arr[0])  #Including the current element
+#         if len(temp2)>0:
+#             for i in range(len(temp2)):
+#                 temp2[i].insert(0,arr[0])
+#                 output.append(temp2[i])
+#
+#     temp1=subsetSumToK(arr[1:],k)            #Excluding the current element
+#     if len(temp1)>0:
+#         for j in range(len(temp1)):
+#             output.append(temp1[j])
+#     return output
+#
+#
+# arr=[1,2,1]
+# k=2
+# sub=subsetSumToK(arr,k)
+# print(sub)
+
+
+# def returnSubsetsArr(nums):
+#     if len(nums) == 0:
+#         out = []
+#         out.append([])
+#         return out
+#
+#     out = []
+#     smallARR = nums[1:]
+#     smallOut = returnSubsetsArr(smallARR)
+#     for i in smallOut:
+#         out.append(i)
+#     for j in smallOut:
+#         jCopy = j[:]
+#         jCopy.insert(0,nums[0])
+#         out.append(jCopy)
+#     return out
+#
+#
+# a = [1,2,3]
+# print(returnSubsetsArr(a))
+
+
+# def returnPemutations(s):
+#     if len(s) == 0:
+#         out = []
+#         out.append('')
+#         return out
+
+    # smallOut = returnPemutations(s[1:])
+    # out = []*(len(s)*len(smallOut))
+    # k = 0
+    # for j in range(len(smallOut)):
+    #     curstr = smallOut[j]
+    #     for i in range(len(curstr)):
+    #         out[k] =  curstr[:i]+ curstr[0]+curstr[i:]
+    #         k = k + 1
+    # return out
+
+#     out=[]
+#     for i in range(len(s)):
+#         smallOut = returnPemutations(s[:i]+s[i+1:])
+#         for j in smallOut:
+#             out.append(s[i]+j)
+#     return out
+#
+# s = 'abc'
+# print(returnPemutations(s))
+
+
+# def printSubsetsHelper(arr,out,idx):
+#     if idx == len(arr):
+#         print(out)
+#         return
+#
+#     printSubsetsHelper(arr, out, idx+1)
+#     copyOut = out[:]
+#     copyOut.append(arr[idx])
+#     printSubsetsHelper(arr, copyOut, idx+1)
+
+# def printSubsets(arr):
+#     out = []
+#     printSubsetsHelper(arr,out,0)
+#
+#
+# a = [1,2,3]
+# printSubsets(a)
+
+
+# def printSubsetSumToKHelper(arr, subset, k, ind):
+#     if(ind == len(arr)) :
+#         if(k == 0 and len(subset) != 0):
+#             print(subset)
+#         return
+#     #do not include the current element in the subset
+#     printSubsetSumToKHelper(arr, subset, k, ind + 1)
+#
+#     subsetcopy = subset[:]
+#     subsetcopy.append(arr[ind])
+#     printSubsetSumToKHelper(arr, subsetcopy, k-arr[ind], ind + 1)
+#
+#
+# def printSubsetSumToK(arr, k) :
+#     # List to store the current subset.
+#     subset = []
+#     printSubsetSumToKHelper(arr, subset, k, 0)
+#
+#
+# a = [1,2,1]
+# k = 2
+# printSubsetSumToK(a, k)
+
+
+# def printPermutations(s,ans):
+#     if len(s) == 0:
+#         print(ans)
+#         return
+#     for i in range(len(s)):
+#         printPermutations(s[:i]+s[i+1:],ans+s[i])
+#
+#
+# s = 'abc'
+# ans = ''
+# printPermutations(s,ans)

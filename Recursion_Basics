@@ -1,0 +1,308 @@
+# todo basic recursion questions
+#
+# def printn_1(n):
+#     if n == 0:
+#         return
+#     # print(n, end=' ')
+#     printn_1(n-1)
+#     print(n)
+#
+#
+# printn_1(5)
+#
+#
+# def sum_n(n):
+#     if n == 0:
+#         return 0
+#     small_output = sum_n(n-1)
+#     output = small_output + n
+#     return output
+#
+#
+# print(sum_n(4))
+#
+# def fact(n):
+#     if n == 0 or n == 1:
+#         return 1
+#     small = fact(n-1)
+#     out = n * small
+#     return  out
+#
+# print(fact(6))
+# a = '12345'
+# print(len(a))
+#
+#
+# def sum_digits(n):
+#     if n == 0:
+#         return 0
+#     small = sum_digits(n//10)
+#     out = small + n % 10
+#     return  out
+#
+# print(sum_digits(1234))
+#
+#
+# def product_digits(n):
+#     if n%10 == n:
+#         return n
+#     small = product_digits(n//10)
+#     out = small * (n % 10)
+#     return  out
+#
+# print(product_digits(1234))
+#
+#
+# def rev(n):
+#     r = 0
+#     while n > 0:
+#         rem = n % 10
+#         r = (r * 10) + rem
+#         n = n // 10
+#     return r
+#
+# print(rev(1001))
+#
+# def reverse_num(n):
+#     if n % 10 == n:
+#         print(n)
+#         return
+#     print(n%10, end='')
+#     reverse_num(n//10)
+#
+# reverse_num(100)
+# reverse_num(0)
+# reverse_num(1234456778990887665534567)
+#
+#
+# def rev(n, temp=0):
+#     # base case
+#     if (n == 0):
+#         return temp
+#     # stores the reverse of a number
+#     temp = (temp * 10) + (n % 10)
+#     return rev(n // 10, temp)
+#
+#
+# print(rev(1234))
+#
+# def palin(n):
+#     if n == rev(n):
+#         return True
+#     return False
+#
+#
+# print(palin(100))
+#
+#
+# count zeroes in given digit:
+# def count_zeroes(n):
+#     return helper(n,c=0)
+#
+# def helper(n,c):
+#     if n == 0:
+#         return c
+#     rem = n % 10
+#     C = 0
+#     if rem == 0:
+#         C = helper(n//10,c+1)
+#     else:
+#         C = helper(n//10,c)
+#     return C
+#
+# print(count_zeroes(10100))
+#
+#
+# count a digit(k) in given number
+# def count_zeroes(n,k=0): # here k = 0
+#     if n == 0:
+#         return 0
+#     x = n % 10
+#     small = count_zeroes(n//10,k)
+#     if x == k:
+#         return 1 + small
+#     return small
+#
+# print(count_zeroes(1000))
+#
+#
+# class Solution:
+#     def numberOfSteps(self, num: int) -> int:
+#         if num == 0:
+#             return 0
+#         x = num
+#         if x % 2 == 0:
+#             return 1 + self.numberOfSteps(num//2)
+#         else:
+#             return 1 + self.numberOfSteps(num-1)
+#
+#
+# n = print(Solution().numberOfSteps(12))
+#
+# def num_of_steps(n):
+#     count = 0
+#     while n > 0:
+#         if n % 2 == 0:
+#             n = n //2
+#             count += 1
+#         else:
+#             n = n - 1
+#             count += 1
+#     return count
+#
+#
+# print(num_of_steps(12))
+#
+#
+# todo simple array questions using recursion
+#
+# def isSorted(arr): #todo iterative sorted or not? , best solution
+#     if len(arr) == 0 or len(arr) == 1:
+#         return True
+#     for i in range(len(arr)-1): #todo imp
+#         if arr[i] > arr[i+1]:
+#             return False
+#     return True
+#
+#
+# ar = [4,5,6,7,8]
+# print(isSorted(ar))
+#
+#
+# using recursion takes O(N) Auxilary space
+# def rec_sorted(ar):
+#     if len(ar) == 1 or len(ar) == 0:
+#         return True
+#     if ar[0] > ar[1]:
+#         return False
+#     return rec_sorted(ar[1:])
+#
+#
+# ar = [5,6,7,8]
+# print(rec_sorted(ar))
+#
+#
+# def checksortList_better(arr,si=0):
+#     l = len(arr)
+#     if si == l-1:
+#         return True
+#     if arr[si] > arr[si+1]:
+#         return False
+#     return checksortList_better(arr,si+1)
+#
+#
+# ar = [3,4,5,6,7]
+# print(checksortList_better(ar))
+#
+#
+# def linear_search(arr,x,ind=0):
+#     if ind == len(arr):
+#         # return False
+#         return -1
+#
+#     # return arr[ind] == x or linear_search(arr,x,ind+1)
+#     if arr[ind] == x:
+#         return ind
+#     return linear_search(arr,x,ind+1)
+#
+#
+# a = [1,2,3,4,5,6,7,8]
+# print(linear_search(a,6))
+#
+#
+# multiple occurences of number adding in list using linear search
+# def linear_search(arr, x, l, ind=0):
+#     if ind == len(arr):
+#         return l
+#     if arr[ind] == x:
+#         l.append(ind)
+#     return linear_search(arr,x,l,ind+1)
+#
+#
+# a = [1,6,2,6,6]
+# l = []
+# print(linear_search(a,7,l))
+#
+#
+# todo patterns using recursion
+#
+# def pattern1(n):
+#     if n == 0:
+#         return
+#     for i in range(n):
+#         print('*', end=' ')
+#     print()
+#     pattern1(n-1)
+#
+# pattern1(5)
+# # * * * *
+# # * * *
+# # * *
+# # *
+#
+# def pattern2(n):
+#     if n == 0:
+#         return
+#     pattern2(n-1)
+#     for i in range(n):
+#         print('*', end=' ')
+#     print()
+#
+#
+# pattern2(5)
+# # *
+# # * *
+# # * * *
+# # * * * *
+# # * * * * *
+#
+# def rep_a_b(s,i=0):
+#     # if i == len(s)-1: #todo retry this approach
+#     #     return s
+#     #
+#     # if s[i] == 'a':
+#     #     return s[:i] + 'b' + s[i+1:]
+#     # return rep_a_b(s,i+1)
+#
+#     if len(s) == 0:
+#         return s
+#     small = rep_a_b(s[1:])
+#     if s[0] == 'a':
+#         return 'b' + small
+#     return s[0] + small
+#
+#
+# s = 'ahaa'
+# print(rep_a_b(s,0))
+#
+#
+# def reverseString(s):
+#     if len(s) == 0:
+#         return s
+#     return reverseString(s[1:]) + s[0]
+#
+#
+# a = 'abcd'
+# print(reverseString(a))
+#
+#
+# def remove_x(s):
+#     if len(s) == 0:
+#         return s
+#     if s[0] == 'x':
+#         return remove_x(s[1:])
+#     return s[0] + remove_x(s[1:])
+#
+# s = 'axsx'
+# print(remove_x(s))
+#
+# def replace_pi(s):
+#     if len(s) == 0:
+#         return s
+#     if s[0:2] == 'pi':
+#         return '3.14' + replace_pi(s[2:])
+#     return s[0] + replace_pi(s[1:])
+#
+#
+# s = 'abpidepipip'
+# print(replace_pi(s))

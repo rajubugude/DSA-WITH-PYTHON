@@ -29,8 +29,6 @@
 #     return  out
 #
 # print(fact(6))
-# a = '12345'
-# print(len(a))
 #
 #
 # def sum_digits(n):
@@ -86,13 +84,13 @@
 #
 # print(rev(1234))
 #
-# def palin(n):
+# def palindrome(n):
 #     if n == rev(n):
 #         return True
 #     return False
 #
 #
-# print(palin(100))
+# print(palindrome(100)) #check palindrome
 #
 #
 # count zeroes in given digit:

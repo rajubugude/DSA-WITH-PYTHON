@@ -1,0 +1,128 @@
+Here are some standard problems of arrays which are easily solved using hashing (I used python Dictionaries here).
+Try these problems only after understanding basics of dictionaries in python
+
+
+# def twoSum(nums,target) :
+    # d = {}
+    # for i in range(len(nums)):
+    #     x = target - nums[i]
+    #     if x in d:
+    #         return [i,d[x]]
+    #     else:
+    #         d[nums[i]] = i #todo as initially hashmap is empty, fill it till we get the sum until then we check using
+                            # x , values of nums as keys
+
+# nums = [3,3]
+# target = 6
+# print(twoSum(nums,target))
+
+
+
+# def getPairsCount(arr, n, k):
+#     d = {}
+#     count = 0
+#     for i in range(n):
+#         if arr[i] < k:
+#             x = k - arr[i]
+#             if x in d:
+#                 count = count + d[x]  #todo adding frequency to count
+#             if arr[i] in d:
+#                 d[arr[i]] += 1
+#             else:
+#                 d[arr[i]] = 1
+#     return count
+#
+#
+# a = [1,1,1,1]
+# print(getPairsCount(a,4,2))
+
+
+# def subArrayExists(nums, n):
+#     d = {}
+#     if 0 in nums:
+#         return nums.index(0)
+#     else:
+#         s = 0
+#         for i in range(n):
+#             s = s + nums[i]
+#             nums[i] = s
+#         for i in range(n):
+#             d[nums[i]] = nums.index(nums[i])
+#
+#     return -1
+#
+#
+# ar = [1,2,3,-3,10]
+# print(subArrayExists(ar,5))
+
+
+# def subarray_sum(nums,k=0): #Bruteforce
+#     n = len(nums)
+#     count = 0
+#     for i in range(n):
+#         if a[i] == k:
+#             count += 1
+#             # print(a[i])
+#         for j in range(i+1,n):
+#             if nums[i] + nums[j] == k:
+#                 # print(nums[i],nums[j])
+#                 count += 1
+#     return count
+#
+#
+# a = [1,2,3,-3,5]
+# print(subarray_sum(a))
+
+
+
+# def subarray_sum(nums,k): #optimal solution 
+#     d = {}
+#     d[0] = 1
+#     s = 0
+#     count = 0
+#     for i in range(len(nums)):
+#         s += nums[i]
+#         x = s-k
+#         if x in d:
+#             count += d[x]
+#         if s in d:
+#             d[s] += 1
+#         else:
+#             d[s] = 1
+#
+#     return count
+#
+#
+# a = [1,2,1,2,1]
+# print(subarray_sum(a,3))
+
+
+
+
+# def sum_0(l):   #Bruteforce
+#     n = len(l)
+#     for i in range(n):
+#         for j in range(i+1,n):
+#             if sum(l[i:j]) == 0:
+#                 return True
+#     return False
+#
+#
+# a = [1,2,3,-3,5]
+# print(sum_0(a))
+
+
+
+# def zero_sum_subarray(arr,n):   #optimal solution 
+#     d = {}
+#     if 0 in arr:
+#         return True
+#     else:
+#         s = 0
+#         for i in range(n):
+#             s = s + arr[i]
+#             arr[i] = s
+#             if arr[i] == 0 or arr[i] in d :
+#                 return True
+#             d[arr[i]] = 1
+#     return False

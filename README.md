@@ -9,7 +9,7 @@ Flow Chart For DSA.
     Time and Space Complexity Analysis, 
     Recursion Advanced Problems,
     Backtracking,
-    Arrays and 2D arrays(list),
+    Arrays and 2D arrays(list,2dlist),
     Binary SEARCH, 
     Strings,
     LinkedList (doubly,circular),

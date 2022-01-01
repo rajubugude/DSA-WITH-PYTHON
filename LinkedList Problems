@@ -1,0 +1,220 @@
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+
+
+def takeInput():
+    inputList = [int(e) for e in input().split()]
+    head = None
+    tail = None
+    for i in inputList:
+        if i == -1:
+            break
+        newNode = Node(i)
+        if head is None:
+            head = newNode
+            tail = newNode
+        else:
+            tail.next = newNode
+            tail = newNode
+    return head
+
+
+def printLL(head):
+    while head is not None:
+        print(head.data, end=' ')
+        head = head.next
+    print()
+    return
+
+
+def lengthLL(head):
+    count = 0
+    curr = head
+    while curr != None:
+        count += 1
+        curr = curr.next
+    return count
+
+
+
+# def reverse3(head): #todo best : O(n)
+#     if head is None or head.next is None:
+#         return head
+#
+#     smallHead = reverse3(head.next)
+#     tail = head.next
+#     tail.next = head
+#     head.next = None
+#     return smallHead
+
+
+# def reverse_iterative(head): #todo best iterative : O(n)
+#     if head is None or head.next is None:
+#         return head
+#
+#     dummy = None
+#     while head:
+#         next = head.next
+#         head.next = dummy
+#         dummy = head
+#         head = next
+#     return dummy
+
+    # curr = head
+    # prev = None
+    # while curr is not None:
+    #     temp = curr.next
+    #     curr.next = prev
+    #     prev = curr
+    #     curr = temp
+    # return prev
+
+
+# def mid_node(head):
+#     m = (lengthLL(head)-1)//2  #todo just observe formula
+#     curr = head
+#     count = 0
+#     while count < m:
+#         count += 1
+#         curr = curr.next
+#     return curr.data
+#
+
+#todo slow fast pointer
+
+# def mid_s_f(head): #1st middle node
+#     slow = head
+#     fast = head
+#     while fast.next != None and fast.next.next != None:
+#         slow = slow.next
+#         fast = fast.next.next
+#     return slow.data
+#
+#
+# def findMid(head):  #2nd middle element
+#1st method
+#     if head is None or head.next is None:
+#         return head.data
+#
+#     slow = head
+#     fast = head
+#
+#     while fast.next and fast.next.next != None:
+#         slow=slow.next
+#         fast=fast.next.next
+#     if fast.next != None :
+#         slow=slow.next
+#     return slow.data
+
+#2nd method
+    # if head is None or head.next is None:
+    #     return head.data
+    #
+    # slow=head
+    # fast=head
+    # while(fast and fast.next!=None):
+    #     slow=slow.next
+    #     fast=fast.next.next
+    # return slow.data
+
+
+# h = takeInput()
+# printLL(h)
+# print(lengthLL(h))
+
+# head = reverse_iterative(h)
+# print(mid_node(h))
+# print(mid_s_f(h))
+# printLL(head)
+
+
+
+#todo class solution of merge sort for linked lists
+
+# class Node:
+#     def __init__(self,data=0,next = None):
+#         self.data = data
+#         self.next = next
+#
+#
+#     def takeInput(self):
+#         inputList = [int(e) for e in input().split()]
+#         head = None
+#         tail = None
+#         for i in inputList:
+#             if i == -1:
+#                 break
+#             newNode = Node(i)
+#             if head is None:
+#                 head = newNode
+#                 tail = newNode
+#             else:
+#                 tail.next = newNode
+#                 tail = newNode
+#         return head
+#
+#
+#     def printLL(self,head):
+#         while head is not None:
+#             print(head.data, end=' ')
+#             head = head.next
+#         print()
+#         return
+
+
+# class Solution:
+#     #Function to sort the given linked list using Merge Sort.
+#     def middleNode(self,head,end=None): #todo middle element node with 2 parameters ,this code is for finding 1st middle
+#         i=head
+#         j=head
+#         while j!=end and j.next!=end:
+#             j=j.next.next
+#             i=i.next
+#         return i
+#
+#     def merge(self,head1, head2):
+#         # code here
+#         l1 = head1
+#         l2 = head2
+#         d = Node(0)
+#         c3 = d
+#         while l1 and l2 :
+#             if l1.data < l2.data:
+#                 c3.next = l1
+#                 l1 = l1.next
+#             else:
+#                 c3.next = l2
+#                 l2 = l2.next
+#             c3 = c3.next
+#         if l1 :
+#             c3.next = l1
+#         if l2:
+#             c3.next = l2
+#
+#         return d.next
+#
+#
+#     def mergeSort1(self,head,end):
+#         if head!=end:
+#             mid=self.middleNode(head, end)
+#             nextMid=mid.next
+#             mid.next=None
+#             h1=self.mergeSort1(head, mid)
+#             h2=self.mergeSort1(nextMid, end)
+#             return self.merge(h1,h2)
+#         return head
+#
+#
+#     def mergeSort(self,head):
+#         if head is None or head.next is None:
+#             return head
+#         end=head
+#         while end.next:
+#             end=end.next
+#         return self.mergeSort1(head,end)
+#
+#
+# head= Node().takeInput()
+# Node().printLL(Solution().mergeSort(head))  #TODO taking input for classes

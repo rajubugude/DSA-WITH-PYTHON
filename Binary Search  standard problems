@@ -1,3 +1,5 @@
+#HERE are few easy medium problems on binary search algorithm.
+
 
 # #here we are finding index of target
 # def binarySearch(arr,x,si,ei):

@@ -1,5 +1,5 @@
 Here are some standard problems of arrays which are easily solved using hashing (I used python Dictionaries here).
-Try these problems only after understanding basics of dictionaries in python
+Try these problems only after understanding basics of dictionaries in python ==> { https://github.com/panthe-r/PYTHON-PROGRAMMING-Language/blob/main/Dictionaries.py } 
 
 
 # def twoSum(nums,target) :

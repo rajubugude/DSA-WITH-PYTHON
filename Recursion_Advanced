@@ -319,3 +319,57 @@
 # s = 'abc'
 # ans = ''
 # printPermutations(s,ans)
+
+
+# def int_to_char(i):
+#     return (chr(96+i))
+#
+#
+# def returnCodes(string):
+#     if len(string) == 0:
+#         out=[]
+#         out.append('')
+#         return out
+#     out = []
+#     intChar1 = int_to_char(int(string[0]))
+#     smallInt = string[1:]
+#     smallOut1 = returnCodes(smallInt)
+#     for i in smallOut1:
+#         comb = intChar1 + i
+#         out.append(comb)
+#
+#     if len(string) >= 2:
+#         firstTwoDigit = int(string[:2])
+#         if firstTwoDigit > 10 and firstTwoDigit <= 26:
+#             smallOut2 = returnCodes(string[2:])
+#             intChar2 = int_to_char(firstTwoDigit)
+#             for j in smallOut2:
+#                 comb1 = intChar2 + j
+#                 out.append(comb1)
+#     return out
+
+
+# string = '1145'
+# print(returnCodes(string))
+
+
+
+# def printCodes(string,ans):
+#     if len(string) == 0:
+#         print(ans)
+#         return
+#     smallstr1 = string[1:]
+#     charInt1 = int_to_char(int(string[0]))
+#     printCodes(smallstr1,ans+charInt1)
+#
+#
+#     if len(string) >= 2:
+#         firstTwoDigit = int(string[:2])
+#         if firstTwoDigit > 10 and firstTwoDigit <= 26:
+#             intChar2 = int_to_char(firstTwoDigit)
+#             printCodes(string[2:],ans+intChar2)
+#
+#
+# printCodes('1123','')
+
+

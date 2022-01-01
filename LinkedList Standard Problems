@@ -1,0 +1,293 @@
+# class Node:
+#     def __init__(self,data):
+#         self.data = data
+#         self.next = None
+
+
+# def takeInput():
+#     inputList = [int(ele) for ele in input().split()]
+#     head = None
+#     tail = None
+#     for ele in inputList:
+#         if ele == -1:
+#             break
+#         newNode = Node(ele)
+#         if head is None:
+#             head = newNode
+#             tail = newNode
+#         else:
+#             tail.next = newNode
+#             tail = newNode
+#
+#     return head
+#
+#
+# def printLL(head):
+#     curr = head
+#     while curr is not None:
+#         print(curr.data,end=' ')
+#         curr = curr.next
+#     print()
+#     return
+#
+#
+# def length(head):
+#     count = 0
+#     while head is not None:
+#         count += 1
+#         head = head.next
+#     return count
+
+
+# def remove_duplicates(head): #for sorted linked list
+#     if head is None:
+#         return
+#
+#     t1 = head
+#     t2 = t1.next
+#
+#     while t2 is not None:
+#         if t1.data == t2.data:
+#             t2 = t2.next
+#         else:
+#             t1 = t2
+#             t2 = t2.next
+#         t1.next = t2
+#     # t1.next = t2
+#     return head
+
+
+
+# def removeDuplicates(head):  #todo removing duplicates in an unsorted ll
+#     if head is None or head.next is None:
+#         return head
+#
+#     d = {}
+#     curr = head
+#     prev = None
+#     while curr:
+#         if curr.data in d:
+#             prev.next = curr.next
+#             curr = curr.next
+#         else:
+#             d[curr.data] = 1
+#             prev = curr
+#             curr = curr.next
+#     return head
+
+
+
+# def even_after_odd(head):
+#     evenStart = None
+#     evenEnd = None
+#     oddStart = None
+#     oddEnd = None
+#     currNode = head
+#
+#     while(currNode != None):
+#         val = currNode.data
+#
+#         if(val % 2 == 0):
+#             if(evenStart == None):
+#                 evenStart = currNode
+#                 evenEnd = evenStart
+#             else:
+#                 evenEnd . next = currNode
+#                 evenEnd = evenEnd . next
+#
+#         else:
+#             if(oddStart == None):
+#                 oddStart = currNode
+#                 oddEnd = oddStart
+#             else:
+#                 oddEnd . next = currNode
+#                 oddEnd = oddEnd . next
+#
+#         currNode = currNode . next
+#
+#     if(oddStart == None or evenStart == None):
+#         return head
+#
+#     oddEnd . next = evenStart
+#     evenEnd . next = None
+#     return oddStart
+
+
+# def del_M_N(m,n):
+#     curr = head
+#     while(curr):
+#         for count in range(1, m):
+#             if curr is None:
+#                 return
+#             curr = curr.next
+#         if curr is None:
+#             return
+#
+#         t = curr.next
+#         for count in range(1, n+1):
+#             if t is None:
+#                 break
+#             t = t.next
+#
+#         curr.next = t
+#
+#         curr = t
+
+
+
+# def swap_nodes(head,m,n):
+#     if abs(m-n) == 1:
+#         if n == 0 or m == 0:
+#             a = head
+#             c = a
+#             b = a.next
+#             c = b.next
+#
+#             b.next = a
+#             a.next = c
+#             return b
+#
+#         else:
+#             if n < m:
+#                 m,n = n,m
+#             a1 = head
+#             a2 = a1
+#             b1,b2 = a1,a2
+#             count = 1
+#             while count < m:
+#                 a1 = a1.next
+#                 count += 1
+#             a2 = a1.next
+#             b1 = a2.next
+#             b2 = b1.next
+#
+#             a2.next = b2
+#             a1.next = b1
+#             b1.next = a2
+#             return head
+#
+#     elif m == 0 or n == 0:
+#         if n == 0:
+#             m,n = n,m
+#         a1 = head
+#         a2 = head.next
+#         count = 1
+#         b1,b2 = a1,a1
+#         while count < n:
+#             b1 = b1.next
+#             count += 1
+#         b2 = b1.next
+#
+#         a1.next = b2.next
+#         b1.next = a1
+#         b2.next = a2
+#         return b2
+#
+#     else:
+#         if n < m:
+#             m,n = n,m
+#         a1 = head
+#         a3 =a1
+#         a2 = head.next
+#         b1,b2 = a1,a1
+#         count = 1
+#         while count < m:
+#             count += 1
+#             a1 = a1.next
+#         a2 = a1.next
+#         a3 = a2.next
+#
+#         c1 = 1
+#         while c1 < n:
+#             b1 = b1.next
+#             c1 += 1
+#         b2 = b1.next
+#
+#         a2.next = b2.next
+#         b2.next = a3
+#         a1.next = b2
+#         b1.next = a2
+#         return head
+
+
+
+# def kreverse(head,k):
+#     if head is None or head.next is None:
+#         return head
+#     count = 0
+#     curr = head
+#     next = None
+#     dummy = None
+#     while curr is not None and count < k:
+#         next = curr.next
+#         curr.next = dummy
+#         dummy = curr
+#         curr = next
+#         count += 1
+#
+#     if next != None:
+#         head.next = kreverse(next,k)
+#
+#     return dummy
+#
+#
+# head = takeInput()
+# printLL(head)
+# h = kreverse(head,3)
+# printLL(h)
+
+
+# def hasCycle(head): #hashmap takes time and space 0(n)
+#     if head is None or head.next is None:
+#         return False
+#
+#     d = {}
+#     curr = head
+#     while curr:
+#         if curr in d:
+#             return True
+#         else:
+#             d[curr] = 1
+#             curr = curr.next
+#     return False
+
+
+
+# def detectAndRemoveCycle(head):
+#     # write your code here
+#     if head or head.next:
+#         return
+#
+#     slow = head
+#     fast = head
+#     entry = head
+#
+#     while fast.next and fast.next.next:
+#         fast = fast.next.next
+#         slow = slow.next
+#
+#         if slow != fast:
+#             print('False ')
+#         else:
+#             print('True')
+#             while slow != entry:
+#                 slow = slow.next
+#                 entry = entry.next
+#
+#                 slow.next = None
+#     return
+#
+#
+# head = takeInput()
+# printLL(head)
+# h = even_after_odd(head)
+# del_M_N(2,3)
+# h = swap_nodes(head,6,2)
+# a,b = reverse3(head)
+# print(b.data)
+# h = kreverse(head,3)
+
+# printLL(head)
+# print(detectAndRemoveCycle(head))
+# h = swap(head,2)
+# printLL(h)

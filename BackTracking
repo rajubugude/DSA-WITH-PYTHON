@@ -1,0 +1,139 @@
+#Rat in a  maze
+
+# def printPathHelper(x,y,maze,output,n):
+#     if x == n - 1 and y == n - 1:
+#         print(output)
+#         return
+#     if x < 0 or y < 0 or x >=n or y >= n  or maze[x][y]== 0 or output[x][y] == 1:
+#         return
+#
+#     output[x][y] = 1
+#     printPathHelper(x+1,y,maze,output,n)
+#     printPathHelper(x-1,y,maze,output,n)
+#     printPathHelper(x,y+1,maze,output,n)
+#     printPathHelper(x,y-1,maze,output,n)
+#     output[x][y] = 0
+#     return
+#
+#
+# def printpath(maze):
+#     n = len(maze)
+#     output = [[0 for _ in range(n)] for _ in range(n)]
+#     printPathHelper(0,0,maze,output,n)
+#
+#
+# n = int(input())
+# maze = []
+# for i in range(n):
+#     row = list(map(int, input().strip().split()))
+#     maze.append(row)
+# printpath(maze)
+
+# 4
+# 1 0 0 0
+# 1 1 0 1
+# 1 1 0 0
+# 0 1 1 1
+
+
+
+#NQueens
+
+# def isSafe(row,col,board,n):
+#     #checking vertical direction
+#     i = row - 1
+#     while i >= 0:
+#         if board[i][col] == 1:
+#             return False
+#         i = i - 1
+#     #checking vertical-left direction i.e, north-west
+#     i = row - 1
+#     j = col - 1
+#     while i >= 0 and j >= 0:
+#         if board[i][j] == 1:
+#             return False
+#         i = i - 1
+#         j = j - 1
+#     #checking vertical-right direction i.e, north-east
+#     i = row - 1
+#     j = col + 1
+#     while i >= 0 and j < n:
+#         if board[i][j] == 1:
+#             return False
+#         i = i - 1
+#         j = j + 1
+#
+#     return True
+#
+#
+# def nQueensHelper(row, board, n):
+#     if row == n:
+#         for i in range(n):
+#             for j in range(n):
+#                 print(board[i][j],end=' ')
+#         print()
+#         return
+#
+#     for col in range(n):
+#         if isSafe(row,col,board,n) is True:
+#             board[row][col] = '1'
+#             nQueensHelper(row + 1, board, n)
+#             board[row][col] = '0' #backtracking
+#     return
+#
+# def nQueens(n):
+#     board = [[0 for _ in range(n)] for _ in range(n)]
+#     nQueensHelper(0,board,n)
+#
+#
+# print(nQueens(4))
+
+
+
+#Suduko Solver
+
+def sudukSolver(board):
+    solve(board)
+    return board
+
+def solve(board):
+    for i in range(len(board)):
+        for j in range(len(board)):
+            if board[i][j] == 0:
+                for val in range(1,10):
+                    if isValid(board,i,j,val):
+                        board[i][j] = val
+
+                        if solve(board) is True:
+                            return True
+                        else:
+                            board[i][j] = 0
+                return False
+
+    return True
+
+
+def isValid(grid, row, col, value):
+    for i in range(len(grid)):
+        if grid[i][col] == value:
+            return False
+
+        if grid[row][i] ==value:
+            return False
+
+        if grid[3 * (row // 3) + i // 3][3 * (col // 3) + i % 3] == value:
+            return False
+
+    return True
+
+m = [[3, 0,6, 5, 0, 8 ,4 ,0, 0],
+     [5, 2, 0, 0, 0 ,0, 0, 0, 0],
+     [0, 8,7 ,0, 0, 0, 0, 3, 1 ],
+     [0 ,0, 3, 0, 1, 0, 0, 8, 0],
+     [9, 0, 0, 8 ,6 ,3, 0 ,0, 5],
+     [0, 5, 0, 0, 9, 0, 6, 0 ,0],
+     [1, 3, 0 ,0 ,0, 0, 2, 5, 0],
+     [0, 0, 0 ,0, 0, 0, 0, 7, 4],
+     [0, 0 ,5 ,2 ,0, 6, 3, 0, 0]]
+
+print(sudukSolver(m))

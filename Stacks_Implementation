@@ -1,0 +1,104 @@
+
+# #todo stack implementing using array
+#
+# class StackA:
+#     def __init__(self):
+#         self.__data = []
+#
+#     def push(self,item):
+#         self.__data.append(item)
+#
+#     def pop(self):
+#         if self.isEmpty():
+#             print('hey stack is empty!')
+#             return
+#         return self.__data.pop()
+#
+#     def top(self):
+#         if self.isEmpty():
+#             print('hey stack is empty!')
+#             return
+#         return self.__data[-1]
+#
+#     def size(self):
+#         return len(self.__data)
+#
+#     def isEmpty(self):
+#         return self.size() == 0
+#
+#
+#
+#
+# s = StackA()
+# (s.pop())
+# s.push(10)
+# s.push(20)
+# s.push(30)
+# while s.isEmpty() is False:
+#     print(s.pop())
+#
+# s.top()
+
+
+
+# #todo stack implementation with linkedlist
+
+# class Node:
+#     def __init__(self,d):
+#         self.data = d
+#         self.next = None
+#
+#
+#
+# class StackL:
+#     def __init__(self):
+#         self.__head = None
+#         self.__count = 0
+#
+#     def push(self,element):
+#         newNode = Node(element)
+#         newNode.next = self.__head
+#         self.__head = newNode
+#         self.__count += 1
+#
+#
+#     def pop(self):
+#         if self.isEmpty() is True:
+#             print('hey stack is empty!')
+#             return
+#         dataa = self.__head.data
+#         self.__head = self.__head.next
+#         self.__count -= 1
+#         return dataa
+#
+#     def top(self):
+#         if self.isEmpty() is True:
+#             print('hey stack is empty!')
+#             return
+#         data = self.__head.data
+#         return data
+#
+#
+#     def size(self):
+#         return self.__count
+#
+#
+#     def isEmpty(self):
+#         return self.size == 0
+#
+#
+#
+# s = StackL()
+# s.push(10)
+# s.push(20)
+# s.push(30)
+#
+# print(s.top())
+#
+# print(s.pop())
+#
+# print(s.top())
+#
+# print(s.size())
+
+

@@ -1,0 +1,429 @@
+# todo balanced parenthesis
+
+# def isBalanced(string):
+#     s = []
+#     for char in string:
+#         if char in '({[':
+#             s.append(char)
+#         elif char == ')':
+#             if (not s or s[-1] != '(') :
+#                 return False
+#             s.pop()
+#         elif char == '}':
+#             if (not s or s[-1] != '{'):
+#                 return False
+#             s.pop()
+#         elif char == ']':
+#             if (not s or s[-1] != '['):
+#                 return False
+#             s.pop()
+#
+#     if (not s):
+#         return True
+#     return False
+#
+#
+# string = input()
+# ans = isBalanced(string)
+# print(ans)
+
+
+
+# def reverse_stack(s1,s2):
+#     if len(s1) <= 1:
+#         return
+#     while len(s1) != 1:
+#         ele = s1.pop()
+#         s2.append(ele)
+#     x = s1.pop()
+#
+#     while len(s2) != 0:
+#         ele = s2.pop()
+#         s1.append(ele)
+#     reverse_stack(s1,s2)
+#     s1.append(x)
+#
+#
+# from sys import setrecursionlimit
+# setrecursionlimit(11000)
+#
+# s1 = [int(ele) for ele in input().split()]
+# s2 = []
+# reverse_stack(s1,s2)
+# while len(s1) != 0:
+#     print(s1.pop(), end=' ')
+
+
+#
+#
+# l = [1]
+# if  l:
+#     print('True')
+# else:
+#     print('false')
+
+
+
+
+
+# Python Script to Implement two stacks in a list
+# class twoStacks:
+#
+#     def __init__(self, n):     # constructor
+#         self.size = n
+#         self.arr = [None] * n
+#         self.top1 = -1
+#         self.top2 = self.size
+#
+#     # Method to push an element x to stack1
+#     def push1(self, x):
+#
+#         # There is at least one empty space for new element
+#         if self.top1 < self.top2 - 1 :
+#             self.top1 = self.top1 + 1
+#             self.arr[self.top1] = x
+#
+#         else:
+#             print("Stack Overflow ")
+#             exit(1)
+#
+#     # Method to push an element x to stack2
+#     def push2(self, x):
+#
+#         # There is at least one empty space for new element
+#         if self.top1 < self.top2 - 1:
+#             self.top2 = self.top2 - 1
+#             self.arr[self.top2] = x
+#
+#         else :
+#             print("Stack Overflow ")
+#             exit(1)
+#
+#     # Method to pop an element from first stack
+#     def pop1(self):
+#         if self.top1 >= 0:
+#             x = self.arr[self.top1]
+#             self.top1 = self.top1 -1
+#             return x
+#         else:
+#             print("Stack Underflow ")
+#             exit(1)
+#
+#     # Method to pop an element from second stack
+#     def pop2(self):
+#         if self.top2 < self.size:
+#             x = self.arr[self.top2]
+#             self.top2 = self.top2 + 1
+#             return x
+#         else:
+#             print("Stack Underflow ")
+#             exit()
+#
+# # Driver program to test twoStacks class
+# ts = twoStacks(5)
+# ts.push1(5)
+# ts.push2(10)
+# ts.push2(15)
+# ts.push1(11)
+# ts.push2(7)
+
+# print("Popped element from stack1 is " + str(ts.pop1()))
+# ts.push2(40)
+# print("Popped element from stack2 is " + str(ts.pop2()))
+
+
+
+# def findRedundantBrackets(s:str):
+#     st = []
+#     for ch in s:
+#         if ch != ')':
+#             st.append(ch)
+#         elif s[-1] == ')':
+#             isRedundant = True
+#             while st[-1] != '(':
+#                 if st[-1] in '+,-,*,/':
+#                     isRedundant = False
+#                 print(st.pop(),'7')
+#             print(st.pop(),'end')
+#             if isRedundant == True:
+#                 return True
+#     return False
+
+# n = int(input())
+# while n:
+#     s = input()
+#     print(findRedundantBrackets(s))
+    # n = n - 1
+
+
+
+
+# def min_reversal(s):
+#     n = len(s)
+#     if n == 0:
+#         return 0
+#     if n % 2 != 0:
+#         return -1
+#
+#     stack = []
+#     for i in range(n):
+#         char = s[i]
+#         if char == '{':
+#             stack.append(char)
+#         else:
+#             if stack and stack[-1] =="{":
+#                 stack.pop()
+#             else:
+#                 stack.append(char)
+#
+#     count = 0
+#     while stack:
+#         c1 = stack[-1]
+#         stack.pop()
+#         c2 = stack[-1]
+#         stack.pop()
+#         if c1 != c2:
+#             count += 2
+#         else:
+#             count += 1
+#     return count
+#
+#
+# s = '}{{}}{{{'
+# print(min_reversal(s))
+
+
+
+
+# def nextLargerElement(arr,n): #todo ngr (nearest greater to right)
+#     #code here
+#     v = []
+#     s = []
+#     for i in range(n-1,-1,-1):
+#         if len(s) == 0:
+#             v.append(-1)
+#         elif (len(s) > 0) and s[-1] > arr[i]:
+#             v.append(s[-1])
+#         elif len(s) > 0 and s[-1] < arr[i]:
+#             while len(s) > 0 and s[-1] <= arr[i]:
+#                 s.pop()
+#             if len(s) == 0:
+#                 v.append(-1)
+#             else:
+#                 v.append(s[-1])
+#         s.append(arr[i])
+#     return v[::-1]
+#
+#
+#
+# arr = [1,3,2,4]
+# print(nextLargerElement(arr,4))
+
+
+
+
+# def nextLargerElement_toleft(arr,n): todo ngl
+#     #code here
+#     v = []
+#     s = []
+#     for i in range(n):
+#         if len(s) == 0:
+#             v.append(-1)
+#         elif (len(s) > 0) and s[-1] > arr[i]:
+#             v.append(s[-1])
+#         elif len(s) > 0 and s[-1] < arr[i]:
+#             while len(s) > 0 and s[-1] <= arr[i]:
+#                 s.pop()
+#             if len(s) == 0:
+#                 v.append(-1)
+#             else:
+#                 v.append(s[-1])
+#         s.append(arr[i])
+#     return v
+#
+#
+# arr = [1, 6, 4, 10, 2, 5]
+# print(nextLargerElement_toleft(arr,6))
+
+
+
+# def nearest_s_to_left(arr): #todo nsl
+#     n = len(arr)
+#     out = []
+#     stack = []
+#     for i in range(n):
+#         if len(stack) == 0:
+#             out.append(-1)
+#         elif len(stack) > 0 and stack[-1] > arr[i]:
+#             while len(stack) > 0 and stack[-1] >= arr[i]:
+#                 stack.pop()
+#             if len(stack) == 0:
+#                 out.append(-1)
+#             else:
+#                 out.append(stack[-1])
+#         elif len(stack) > 0 and stack[-1] < arr[i]:
+#             out.append(stack[-1])
+#         stack.append(arr[i])
+#     return out
+#
+#
+# a = [154, 293, 383, 422, 717]
+# print(nearest_s_to_left(a))
+
+
+
+# def near_small_to_ryt(a): #todo nsr
+#     out = []
+#     stack = []
+#     for i in range(len(a)-1,-1,-1):
+#         if not stack:
+#             out.append(-1)
+#         elif stack and stack[-1] < a[i]:
+#             out.append(stack[-1])
+#         elif stack and stack[-1] >= a[i]:
+#             while stack and stack[-1] >= a[i]:
+#                 stack.pop()
+#             if not stack:
+#                 out.append(-1)
+#             else:
+#                 out.append(stack[-1])
+#         stack.append(a[i])
+#     return out[::-1]
+#
+#
+# a = [4,5,2,10,8]
+# print(near_small_to_ryt(a))
+
+
+
+# def stock_span(p): #todo bruteforce for stock span, i.e, similar to near greaest element to left problem
+#     result = []
+#     for i in range(0, len(p)):
+#         count = 1
+#         for j in range(i-1, -1, -1):
+#             if p[j] <= p[i]:
+#                 count += 1
+#         result.append(count)
+#     return result
+#
+#
+# s = [10,20,30,5,45]
+# print(stock_span(s))
+
+#
+# def stock_span(a): #todo stockspan using ngl
+#     n = len(a)
+#     span = []
+#     stack = []
+#     for i in range(n):
+#        if len(stack) == 0:
+#            span.append(1)
+#        elif len(stack) > 0 and stack[-1][0] > a[i]:
+#            span.append(i-stack[-1][1])
+#        elif len(stack) > 0 and  stack[-1][0] <= a[i]:
+#            while stack and  stack[-1][0] <= a[i]:
+#                stack.pop()
+#            if len(stack) == 0:
+#                span.append(i+1)
+#            else:
+#                span.append(i-stack[-1][1])
+#        stack.append([a[i],i])
+#     return span
+#
+#
+# ar = [68, 735, 101,770, 525]
+# print(stock_span(ar))
+
+
+# n = int(input())
+# s = [0]*n
+# print(s)
+
+
+# def mah_nsl(arr):  #todo NSL and NSR combined application
+#     n = len(arr)
+#     pseudo_index = -1
+#     left = []
+#     stack = []
+#     for i in range(n):
+#         if len(stack) == 0:
+#             left.append(pseudo_index)
+#         elif len(stack) > 0 and stack[-1][0] >= arr[i]:
+#             while len(stack) > 0 and stack[-1][0] >= arr[i]:
+#                 stack.pop()
+#             if len(stack) == 0:
+#                 left.append(pseudo_index)
+#             else:
+#                 left.append(stack[-1][1])
+#         elif len(stack) > 0 and stack[-1][0] < arr[i]:
+#             left.append(stack[-1][1])
+#         stack.append([arr[i],i])
+#         # elif i == n-1:
+#     # print(stack)
+#     return left
+#
+#
+# def mah_nsr(a):
+#     ryt = []
+#     stack = []
+#     pseudo_ind = len(a)
+#     for i in range(len(a)-1,-1,-1):
+#         if not stack:
+#             ryt.append(pseudo_ind)
+#         elif stack and stack[-1][0] < a[i]:
+#             ryt.append(stack[-1][1])
+#         elif stack and stack[-1][0] >= a[i]:
+#             while stack and stack[-1][0] >= a[i]:
+#                 stack.pop()
+#             if not stack:
+#                 ryt.append(pseudo_ind)
+#             else:
+#                 ryt.append(stack[-1][1])
+#         stack.append([a[i],i])
+#     return ryt[::-1]
+#
+# #todo max area of histogram,in one passs, TC : O(N)+O(N)+O(N) and SC: O(3N)
+# def mah(histogram):
+#     area = [0]*len(histogram)
+#     r = mah_nsr(histogram)
+#     l = mah_nsl(histogram)
+#     for i in range(len(histogram)):
+#         area[i] = (r[i] - l[i]-1)*histogram[i]
+#     return max(area)
+# # width = [0]*len(histogram)
+#     # r = mah_nsr(histogram)
+#     # l = mah_nsl(histogram)
+#     # for i in range(len(histogram)):
+#     #     width[i] = r[i] - l[i]-1
+#     # area = [0]*len(histogram)
+#     # for i in range(len(histogram)):
+#     #     area[i] = width[i] * histogram[i]
+#     # return max(area)
+#
+#
+# a = [3,2,10,11,5,10,6,3]
+# # print(mah_nsr(a))
+# # print(mah_nsl(a))
+# print(mah(a))
+
+
+
+
+# #todo max area of histogram,in one passs, TC : O(N)+O(N) and SC: O(N)
+# class Solution:
+#     def getMaxArea(self,histogram):
+#         s = []
+#         max_area = 0
+#         n = len(histogram)
+#         for i in range(n+1):
+#             width = 0
+#             while (((len(s) != 0) and (i == n or histogram[s[-1]] >= histogram[i]))):
+#                 height = histogram[s[-1]]
+#                 s.pop()
+#                 if len(s) == 0:
+#                     width = i
+#                 else:
+#                     width = i - s[-1] - 1
+#                 max_area = max(max_area,width*height)
+#             s.append(i)
+#         return max_area

@@ -4,7 +4,7 @@ Sharing Data Structures and Algorithms (CODE IN PYTHON).
 
 Flow Chart For DSA.
 .
-    Recursion,
+    Basic Recursion,
     OOPS Basics(knowledge of classes and objects),
     Time and Space Complexity Analysis, 
     Recursion Advanced Problems,

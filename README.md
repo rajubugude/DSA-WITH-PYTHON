@@ -1,6 +1,6 @@
 # DSA_WITH_PYTHON
 
-Here I will be sharing Data Structures and Algorithms (CODE IN PYTHON).
+Sharing Data Structures and Algorithms (CODE IN PYTHON).
 
 Flow Chart For DSA.
 .

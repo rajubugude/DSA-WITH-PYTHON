@@ -239,22 +239,22 @@ def maxSubArraySum(arr,N):
 
 
 
-# def reverse(arr, start, end):
-#     while start < end:
-#         arr[start], arr[end] = arr[end], arr[start]
-#         start += 1
-#         end -= 1
-#
+def reverse(arr, start, end):
+    while start < end:
+        arr[start], arr[end] = arr[end], arr[start]
+        start += 1
+        end -= 1
+    return arr
 
+def rotate(arr, k): #rotate left
+    arr1 = reverse(arr, 0, len(arr) - 1)
+    #print(arr1,1)
+    arr2 = reverse(arr1, 0, len(arr)-k-1)
+    #print(arr2,2)
+    arr3 = reverse(arr2, len(arr)-k, len(arr) - 1)
+    #print(arr3,3)
+    return arr3
 
-
-# def rotate(arr, k):
-#     reverse(arr, 0, len(arr) - 1)
-#     reverse(arr, 0, k - 1)
-#     reverse(arr, k, len(arr) - 1)
-#     return arr
-#
-#
 # a = [1,2,3,4,5,6,7]
 # print(rotate(a,3))
 

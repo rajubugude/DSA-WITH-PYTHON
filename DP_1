@@ -2,6 +2,74 @@ import math
 import sys
 sys.setrecursionlimit(10000)
 
+
+# def staircase(n):
+#     if n == 1:
+#         return 1
+#     if n == 2:
+#         return 2
+#     if n == 3:
+#         return 4
+#     one = staircase(n-1)
+#     two = staircase(n-2)
+#     three = staircase(n-3)
+#     return one+two+three
+#
+#
+# print(staircase(4))
+
+
+# def stairCaseMemo(n,dp):
+#     if n == 1:
+#         return 1
+#     if n == 2:
+#         return 2
+#     if n == 3:
+#         return 4
+#
+#     if dp[n-1] == -1:
+#         one = stairCaseMemo(n-1,dp)
+#         dp[n-1] = one
+#     else:
+#         one = dp[n-1]
+#
+#     if dp[n-2] == -1:
+#         two = stairCaseMemo(n-2,dp)
+#         dp[n-2] = two
+#     else:
+#         two = dp[n-2]
+#
+#     if dp[n-3] == -1:
+#         three = stairCaseMemo(n-3,dp)
+#         dp[n-3] = three
+#     else:
+#         three = dp[n-3]
+#
+#     return one+two+three
+#
+# n = 4
+# dp = [-1 for _ in range(n+1)]
+# print(stairCaseMemo(n,dp))
+
+
+# def stairCaseI(n):
+#     dp = [-1 for _ in range(n+1)]
+#     dp[0] = 0
+#     dp[1] = 1
+#     if n >= 2:
+#         dp[2] = 2
+#     if n >= 3:
+#         dp[3] = 4
+#     if n >= 3:
+#         for i in range(4,n+1):
+#             dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
+#     return dp[n]
+#
+# print(stairCaseI(5))
+
+
+
+
 # def fibRec(n):
 #     if n == 0 or n == 1:
 #         return n
@@ -261,74 +329,3 @@ sys.setrecursionlimit(10000)
 #
 # arr = [6,3,1,2,0,7,9,10]
 # print(lisI(arr,8))
-
-
-
-# def staircase(n):
-#     if n == 1:
-#         return 1
-#     if n == 2:
-#         return 2
-#     if n == 3:
-#         return 4
-#     one = staircase(n-1)
-#     two = staircase(n-2)
-#     three = staircase(n-3)
-#     return one+two+three
-#
-#
-# print(staircase(4))
-
-
-# def stairCaseMemo(n,dp):
-#     if n == 1:
-#         return 1
-#     if n == 2:
-#         return 2
-#     if n == 3:
-#         return 4
-#
-#     if dp[n-1] == -1:
-#         one = stairCaseMemo(n-1,dp)
-#         dp[n-1] = one
-#     else:
-#         one = dp[n-1]
-#
-#     if dp[n-2] == -1:
-#         two = stairCaseMemo(n-2,dp)
-#         dp[n-2] = two
-#     else:
-#         two = dp[n-2]
-#
-#     if dp[n-3] == -1:
-#         three = stairCaseMemo(n-3,dp)
-#         dp[n-3] = three
-#     else:
-#         three = dp[n-3]
-#
-#     return one+two+three
-#
-# n = 4
-# dp = [-1 for _ in range(n+1)]
-# print(stairCaseMemo(n,dp))
-
-
-# def stairCaseI(n):
-#     dp = [-1 for _ in range(n+1)]
-#     dp[0] = 0
-#     dp[1] = 1
-#     if n >= 2:
-#         dp[2] = 2
-#     if n >= 3:
-#         dp[3] = 4
-#     if n >= 3:
-#         for i in range(4,n+1):
-#             dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
-#     return dp[n]
-#
-# print(stairCaseI(5))
-
-
-
-
-

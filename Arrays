@@ -201,16 +201,18 @@ Here are problems and few related to algorithms in arrays like two pointer, dutc
 
 
 #Kadanes's Algorithm (max contigous subarray sum)
-def maxSubArraySum(arr,N):
-    ##Your code here
-    s , max = 0 ,arr[0]
-    for i in range(N):
+def maxSubarraySum(arr, n) : 
+    s , maxi = 0 ,arr[0]
+    for i in range(n):
         s += arr[i]
-        if s > max :
-            max = s
+        if s > maxi :
+            maxi = s
         if s < 0:
-            s = 0
-    return max
+            s = 0           
+    if maxi < 0:
+        return 0
+    return maxi
+
 
 
 

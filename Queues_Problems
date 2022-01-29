@@ -1,0 +1,94 @@
+# from queue import Queue
+
+# def reverse_queue(queue):
+#     # Base case
+#     if queue.empty():
+#         return
+#     # Dequeue current item (from front)
+#     item = queue.queue[0]
+#     queue.get()
+#     # Reverse remaining queue
+#     reverse_queue(queue)
+#     # Enqueue current item (to rear)
+#     queue.put(item)
+
+
+
+# def print_queue(queue):
+#     while not queue.empty():
+#         print(queue.queue[0], end=" ")
+#         queue.get()
+#     # print()
+#
+# def reverseElements(q, k):
+#     # Write your code here
+#     # Return a queue
+#     stack = []
+#     n_q = Queue()
+#     for i in range(k):
+#         x = q.get()
+#         stack.append(x)
+#
+#     while q.qsize() != 0:
+#         j = q.get()
+#         n_q.put(j)
+#
+#
+#     while len(stack) != 0:
+#         y = stack.pop()
+#         q.put(y)
+#
+#     while n_q.qsize() != 0:
+#         z = n_q.get()
+#         q.put(z)
+#
+#     return q
+#
+# q = Queue()
+# q.put(1)
+# q.put(2)
+# q.put(3)
+# q.put(4)
+# q.put(5)
+# q.put(6)
+
+# reverse_queue(q)
+# print_queue(q)
+# reverseElements(q,3)
+# print_queue(q)
+
+
+
+from queue import Queue
+def gen_digits(n):
+    q = Queue()
+    q.put('5')
+    q.put('6')
+    for i in range(n):
+        cur = q.get()
+        print(cur, end=' ')
+        q.put(cur+'5')
+        q.put(cur+'6')
+    print()
+
+gen_digits(7)
+
+
+def generate_binary(N):
+    # code here
+    l = []
+    q = Queue()
+    q.put('1')
+    for i in range(N):
+        cur = q.get()
+        l.append(cur)
+        q.put(cur+'0')
+        q.put(cur+'1')
+    return l
+
+
+print(generate_binary(5))
+q = Queue()
+q.put(1)
+q.put(2)
+print(q.queue[0])

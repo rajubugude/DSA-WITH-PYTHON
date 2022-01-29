@@ -1,0 +1,196 @@
+# todo queue implementation using array.
+
+# class Queue_array:
+#     def __init__(self):
+#         self.queue = []
+#         self.count = 0
+#         self.f = 0  # f is index we are moving index
+#
+#     def enque(self,element):
+#         self.queue.append(element)
+#         self.count += 1
+#
+#     def deque(self):
+#         if self.count == 0:
+#             return -1
+#         element = self.queue[self.f]
+#         self.f += 1
+#         self.count -= 1
+#         return element
+#
+#     def size(self):
+#         return self.count
+#
+#     def isEmpty(self):
+#         if self.size() == 0:
+#             return
+#
+#     def front(self):
+#         if self.count == 0:
+#             return -1
+#         return  self.queue[self.f]
+
+
+# q = Queue_array()
+# q.enque(10)
+# q.enque(20)
+# q.enque(30)
+# q.enque(40)
+# print(q)
+# print(q.size())
+# print(q.deque())
+# print(q.front())
+# while q.size() != 0:
+#     print(q.front())
+#     q.deque()
+# print(q.front())
+
+
+
+#todo queue implementation using linkedlist
+
+# class Node:
+#     def __init__(self,d):
+#         self.data = d
+#         self.next = None
+#
+#
+# class Queue_LL:
+#     def __init__(self):
+#         self.head = None
+#         self.tail = None
+#         self.count = 0
+#
+#     def push(self,element):
+#         newNode = Node(element)
+#         if self.head is  None:
+#             self.head = newNode
+#             self.tail = newNode
+#         else:
+#             self.tail.next = newNode
+#             self.tail = newNode
+#         self.count += 1
+#
+#     def dequeue(self):
+#         if self.head is None:
+#             return -1
+#         d = self.head.data
+#         self.head = self.head.next
+#         self.count -= 1
+#         return d
+#
+#     def size(self):
+#         return self.count
+#
+#     def front(self):
+#         if self.count == 0:
+#             return -1
+#         return self.head.data
+#
+#     def isEmpty(self):
+#         return self.count == 0
+#
+# q = Queue_LL()
+# q.push(10)
+# q.push(20)
+# q.push(30)
+# q.push(40)
+# print(q.front())
+# print(q.size())
+# print(q.dequeue())
+# print(q.front())
+# print(q.size())
+# print(q.isEmpty())
+# while q.size() != 0:
+#     print(q.dequeue())
+# print(q.front())
+# print(q.isEmpty())
+
+
+
+#todo queue implementation using two stacks
+
+
+# class Queue:
+#     def __init__(self):
+#         self.s1 = []
+#         self.s2 = []
+#         self.count = 0
+#
+#     def enqueue(self,item):
+#         self.s1.append(item)
+#         self.count += 1
+#
+#     def dequeue(self):
+#         if self.count == 0:
+#             return -1
+#         while self.s1:
+#             s = self.s1.pop()
+#             self.s2.append(s)
+#         y = self.s2.pop()
+#         self.count -= 1
+#         while self.s2:
+#             x = self.s2.pop()
+#             self.s1.append(x)
+#         return y
+#
+#     def size(self):
+#         return self.count
+#
+#
+# q =Queue()
+# q.enqueue(10)
+# q.enqueue(20)
+# q.enqueue(30)
+# q.enqueue(40)
+# print(q.size())
+# print(q.dequeue())
+# print(q.size())
+# print(q.dequeue())
+# print(q.size())
+
+
+
+#todo stack implementation using two queues
+
+from queue import Queue
+
+# class Stack:
+#     def __init__(self):
+#         # Two inbuilt queues
+#         self.q1 = Queue()
+#         self.q2 = Queue()
+#         # To maintain current number
+#         # of elements
+#         self.curr_size = 0
+#
+#     def push(self, x):
+#         self.curr_size += 1
+#
+#         # Push x first in empty q2
+#         self.q2.put(x)
+#
+#         # Push all the remaining
+#         # elements in q1 to q2.
+#         while (not self.q1.empty()):
+#             self.q2.put(self.q1.queue[0])
+#             self.q1.get()
+#         # swap the names of two queues
+#         self.q = self.q1
+#         self.q1 = self.q2
+#         self.q2 = self.q
+#
+#     def pop(self):
+#         # if no elements are there in q1
+#         if (self.q1.empty()):
+#             return
+#         self.q1.get()
+#         self.curr_size -= 1
+#
+#     def top(self):
+#         if (self.q1.empty()):
+#             return -1
+#         return self.q1.queue[0]
+#
+#     def size(self):
+#         return self.curr_size

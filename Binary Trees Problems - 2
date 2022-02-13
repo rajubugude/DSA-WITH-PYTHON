@@ -1,0 +1,240 @@
+def remove_leaves(root): #todo revise more on this
+    if root is None:
+        return None
+    if root.left is None and root.right is None:
+        return None
+    root.left = remove_leaves(root.left)
+    root.right = remove_leaves(root.right)
+    return root
+
+
+def mirror_binary(root):
+    if root is None:
+        return
+    mirror_binary(root.left)
+    mirror_binary(root.right)
+    root.left,root.right = root.right,root.left #swap
+
+
+def heightBT(root):
+    if root is None:
+        return 0
+    leftHT = heightBT(root.left)
+    rightHT =heightBT(root.right)
+    m = max(leftHT,rightHT)
+    return 1 + m
+
+
+def check_balanceTree(root): #O(N^2)
+     if root is None:
+         return True
+
+     lh = heightBT(root.left)
+     rh = heightBT(root.right)
+
+     if abs(lh-rh) != 1:
+        return False
+
+     a = check_balanceTree(root.left)
+     b = check_balanceTree(root.right)
+
+     if a and b:
+         return True
+     return False
+
+
+def isBalanced_improved(root): #todo O(N)  revise dry run and understand
+    if root is None:
+        return 0, True
+    lh, isleftBlanced = isBalanced_improved(root.left)
+    rh, isrightBalanced = isBalanced_improved(root.right)
+
+    h = 1 + max(lh,rh)
+    if abs(lh-rh) != 1:
+        return h, False
+
+    if isleftBlanced and isrightBalanced:
+        return h, True
+    else:
+        return h, False
+
+
+def isBalnced(root):
+    h, isRootBalanced = isBalanced_improved(root)
+    return isRootBalanced
+
+
+def diameter_BT(root):
+    if root is None:
+        return 0,0  #height,diameter
+
+    lh, dl = diameter_BT(root.left)
+    rh, dr = diameter_BT(root.right)
+
+    m = max(rh,lh)
+    h = 1 + m
+    d = 1 + lh + rh
+
+    return h, max(d,dr,dl)
+
+
+
+def printLevelwise(root):
+    q = Queue()
+    if root is None:
+        return
+    q.put(root)
+    while not q.empty():
+        cur_node = q.get()
+        print(cur_node.data)
+        if cur_node.left is not None:
+            q.put(cur_node.left)
+        if cur_node.right is not None:
+            q.put(cur_node.right)
+
+
+def printDetailedLevelwise(root):
+    q = Queue()
+    if root is None:
+        return
+    q.put(root)
+    while not q.empty():
+        cur_node = q.get()
+        print(cur_node.data, end=':')
+        if cur_node.left is not None:
+            q.put(cur_node.left)
+            print('l', cur_node.left.data, end=', ')
+        if cur_node.right is not None:
+            q.put(cur_node.right)
+            print('r', cur_node.right.data, end='')
+        print()
+
+
+def binarySearch(a,x):
+    first = 0
+    last = len(a)-1
+    while first <= last:
+        mid = (first + last)//2
+        if x < a[mid]:
+            last = mid - 1
+        elif x > a[mid]:
+            first = mid + 1
+        else:
+            return mid
+
+    return -1
+
+def build_INO_PRE(inOL, preOL):
+    if len(preOL) == 0:
+        return None
+    rootData = preOL[0]
+    root = Binary_tree_Node(rootData)
+
+    rootINDInorder = binarySearch(inOL,rootData)
+
+    leftInorder = inOL[0:rootINDInorder]
+    rightInorder = inOL[rootINDInorder+1:]
+
+    lengthOfLTinPre = len(leftInorder)
+
+    leftPreorder = preOL[1: lengthOfLTinPre+1]
+    rightPreorder = preOL[lengthOfLTinPre+1:]
+
+    leftChild = build_INO_PRE(leftInorder, leftPreorder)
+    rightChild = build_INO_PRE(rightInorder, rightPreorder)
+
+    root.left = leftChild
+    root.right = rightChild
+    return root
+
+
+def build_IN_PO(ino,post):
+    if len(post) == 0:
+        return None
+    rootData = post[-1]
+    root = Binary_tree_Node(rootData)
+
+    rootINDInorder = binarySearch(ino,rootData)
+
+    leftInorder = ino[0:rootINDInorder]
+    rightInorder = ino[rootINDInorder+1:]
+
+    lengthOfLTinPost = len(leftInorder)
+
+    leftPostorder = post[:lengthOfLTinPost]
+    rightPostorder = post[lengthOfLTinPost:len(post) - 1]
+
+    leftChild = build_IN_PO(leftInorder,leftPostorder)
+    rightChild = build_IN_PO(rightInorder,rightPostorder)
+
+    root.left = leftChild
+    root.right = rightChild
+    return root
+    
+    
+    def max_min(root):
+    if root is None:
+        return -100000,100000  #max,min
+
+    maxL,minL = max_min(root.left)
+    maxR,minR = max_min(root.right)
+
+    mAX = max(root.data,maxL,maxR)
+    mIN = min(root.data,minL,minR)
+
+    return mAX,mIN
+    
+   
+   
+def rightSideView(root):
+    if root is None:
+        return []
+
+    q = Queue()
+    q.put(root)
+    l = []
+    while not q.empty():
+        size = q.qsize()
+        l.append(q.queue[-1].val)
+        for _ in range(size):
+            curr = q.get()
+            if curr.left:
+                q.put(curr.left)
+            if curr.right:
+                q.put(curr.right)
+    return l    
+    
+    
+
+def zigzagLevelOrder(root): #todo same code for spiral traversal also
+    if not root:
+        return []
+    q = Queue()
+    res = []
+    q.put(root)
+    # lefttoright = True
+    i = 1
+    while not q.empty():
+        n = q.qsize()
+        l = []
+        while n:
+            cur = q.get()
+            l.append(cur.data)
+            if cur.left != None:
+                q.put(cur.left)
+            if cur.right != None:
+                q.put(cur.right)
+            n = n - 1
+        if i%2 != 0:
+            res.append(l)
+        else:
+            res.append(l[::-1])
+        i = i + 1
+        # lefttoright = not lefttoright
+
+    return res
+    # final = []
+    # for i in res:
+    #     for j in i:
+    #         final.append(j)
+    # return final

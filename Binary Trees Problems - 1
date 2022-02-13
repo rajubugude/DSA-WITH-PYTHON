@@ -1,0 +1,107 @@
+def count_nodes(root):
+    if root is None:
+        return 0
+    leftCount = count_nodes(root.left)
+    rytCount = count_nodes(root.right)
+    return 1 + leftCount + rytCount
+
+
+def sum_nodes(root):
+    if root is None:
+        return 0
+    leftSum = sum_nodes(root.left)
+    rytSum = sum_nodes(root.right)
+    return root.data + leftSum + rytSum
+
+
+def max_data(root):
+    if root is None:
+        return -1
+
+    left_max = max_data(root.left)
+    right_max = max_data(root.right)
+    largest = max(root.data,left_max,right_max)
+    return largest
+
+    if root.data > left_max and root.data > right_max:
+        return root.data
+    elif left_max > root.data and left_max > right_max:
+        return left_max
+    elif right_max > root.data and right_max > left_max:
+        return right_max
+
+
+def nodesGTX(root,x):
+    if root is None:
+        return 0
+    leftGTX = nodesGTX(root.left,x)
+    rightGTX = nodesGTX(root.right,x)
+    if root.data > x:
+        return 1 + leftGTX + rightGTX
+    return leftGTX + rightGTX
+
+
+def heightBT(root):
+    if root is None:
+        return 0
+    leftHT = heightBT(root.left)
+    rightHT =heightBT(root.right)
+    m = max(leftHT,rightHT)
+    return 1 + m
+
+
+def count_leaf(root):
+    if root is None:
+        return 0
+    if root.left is None or root.right is None:
+        return 1
+    left_leaves = count_leaf(root.left)
+    right_leaves = count_leaf(root.right)
+    return  left_leaves + right_leaves
+
+
+def printNADK(root,k,l):
+    if root is None:
+        return
+
+    if k == 0:
+        l.append(root.data)
+        print(root.data)
+
+    printNADK(root.left,k-1,l)
+    printNADK(root.right,k-1,l)
+
+def returnList(root,k):
+    l = []
+    printNADK(root,k,l)
+    return l
+
+
+def replace_withDepth(root,k=0):
+    if root is None:
+        return
+
+    root.data = k
+    replace_withDepth(root.left,k+1)
+    replace_withDepth(root.right,k+1)
+
+
+def find_node(root, x):
+    if root is None:
+        return False
+    if root.data == x:
+        return True
+    return find_node(root.left, x) or find_node(root.right, x)
+
+
+def sibling(root):
+    if root is None:
+        return
+
+    if root.left is None and root.right is not None:
+        print(root.right.data)
+    if root.right is None and root.left is not  None:
+        print(root.left.data)
+
+    sibling(root.left)
+    sibling(root.right)

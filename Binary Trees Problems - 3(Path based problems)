@@ -1,0 +1,303 @@
+class Binary_tree_Node:
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+from queue import Queue
+def singleLineInputLevelwise(intL):
+    q = Queue()
+    rootData = intL[0]
+    root = Binary_tree_Node(rootData)
+    q.put(root)
+    i = 0
+    while not q.empty() and i < len(intL):
+        i = i+1
+        curr_data = intL[i]
+        if curr_data != -1:
+            curr = q.queue[0]
+            curr.left = Binary_tree_Node(curr_data)
+            q.put(curr.left)
+        i = i + 1
+        curr_data = intL[i]
+        if curr_data != -1:
+            curr = q.queue[0]
+            curr.right = Binary_tree_Node(curr_data)
+            q.put(curr.right)
+        q.get()
+    return root
+
+
+def printlevelwiselinebyline(root): #todo bestway linebyline levelwise
+    q = Queue()
+    q.put(root)
+    while not q.empty():
+        sizeOfQueue = q.qsize()
+        while sizeOfQueue:
+
+            cur = q.get()
+            print(cur.data,end=' ')
+            if cur.left != None:
+                q.put(cur.left)
+            if cur.right != None:
+                q.put(cur.right)
+            sizeOfQueue = sizeOfQueue - 1
+        print()
+
+
+def printbt_preOrder(root,l):
+    if  root is None:
+        return
+
+    l.append(root.data)
+    printbt_preOrder(root.left,l)
+    printbt_preOrder(root.right,l)
+    return
+
+def printl(root):
+    l = []
+    printbt_preOrder(root,l)
+    print(l)
+
+
+def printPOST(root,l):
+    if not root:
+        return
+
+    printPOST(root.left,l)
+    printPOST(root.right,l)
+    l.append(root.data)
+    return
+
+def returnPostlist(root):
+    l = []
+    printPOST(root,l)
+    return l
+
+
+def currentPathSum(currentPeak, maxSum):
+    # Checking if the current node is NULL.
+    if (currentPeak == None):
+        return 0
+
+    maxPathSumLeft = max(currentPathSum(currentPeak.left, maxSum), 0) # 0 for negative numbers
+    maxPathSumRight = max(currentPathSum(currentPeak.right, maxSum), 0) # 0 for negative numbers
+
+    currentSum = maxPathSumLeft + maxPathSumRight + currentPeak.data
+    # Updating the overall maximum sum
+    maxSum[0] = max(currentSum, maxSum[0])
+    return max(maxPathSumLeft, maxPathSumRight) + currentPeak.data
+
+
+def maxPathSum(root):
+    maxSum = [-2147483648] #todo best method assuming in this way
+    currentPathSum(root, maxSum)
+    return maxSum[0]
+
+
+class Solution:
+    #Function to return maximum path sum from any node in a tree.
+    def findMaxSum(self, root):
+        #Your code here
+        if not root:
+            return 0
+        self.maxi = root.data #initially assuming root.data as maximum
+        # self.maxi = -sys.maxsize-1
+        self.maxpathdown(root)
+        return self.maxi
+
+
+    def maxpathdown(self,root):
+        if root is None:
+            return 0
+
+        maxleft = max(0,self.maxpathdown(root.left))
+        maxright = max(0,self.maxpathdown(root.right))
+
+        self.maxi = max(self.maxi, maxleft+maxright+root.data) #maxi is int variable
+        return max(maxleft,maxright) + root.data
+
+
+def maxPathSum(root):
+    if not root:
+        return 0
+    maxpathdown.res = root.data
+    # self.maxi = -sys.maxsize-1
+    maxpathdown(root)
+    return maxpathdown.res
+
+def maxpathdown(root):
+    if root is None:
+        return 0
+
+    l = maxpathdown(root.left)
+    r = maxpathdown(root.right)
+
+    # Max path for parent call of root. This path
+    # must include at most one child of root
+    max_single = max(max(l, r) + root.data, root.data)
+
+    # Max top represents the sum when the node under
+    # consideration is the root of the maxSum path and
+    # no ancestor of root are there in max sum path
+    max_top = max(max_single, l+r+ root.data)
+
+    # Static variable to store the changes
+    # Store the maximum result
+    maxpathdown.res = max(maxpathdown.res, max_top) #todo static variable
+    return max_single
+
+
+def leaf(root,path): #storing leaves in an array
+    if root is None:
+        return
+    if root.left is None and root.right is None:
+        path.append(root.data)
+
+    leaf(root.left, path)
+    leaf(root.right, path)
+
+
+def printLeaves(root):
+    path = []
+    leaf(root, path)
+    return path
+
+
+def haspath(root,x,arr): #no duplicates allowed
+    if not root:
+        return
+    arr.append(root.data)
+    if root.data == x:
+        return True
+    if haspath(root.left,x,arr) or haspath(root.right, x, arr):
+        return True
+    else:
+        arr.pop()
+        return False
+
+
+def printpath(root,x):
+    arr = []
+    if haspath(root,x,arr):
+        return arr
+    return arr
+
+def findLCA(root, u, v):
+    l1 = printpath(root, u)
+    l2 = printpath(root, v)
+    print(l1,l2)
+    n1 = len(l1)
+    n2 = len(l2)
+    i = 0
+    while(i < n1 and i < n2):
+        if l1[i] != l2[i]:
+            break
+        i += 1
+    return l1[i-1]
+
+
+def lowestCommonAncestor(root, u, v): #for [8, -1, -1] u = 8,v = 0
+    if root == None:
+        return root
+
+    if root.data == u or root.data == v:
+        return root.data
+
+    l = lowestCommonAncestor(root.left, u, v)
+    r = lowestCommonAncestor(root.right, u, v)
+
+    if  l and r:
+        return root.data
+
+    if l:
+        return l
+
+    if r:
+        return r
+        
+        
+def nodeToRootPath(root,x):
+    if root == None:
+        return None
+
+    if root.data == x:
+        l = list()
+        l.append(root.data)
+        return l
+
+    leftOutput = nodeToRootPath(root.left,x)
+    if leftOutput != None:
+        leftOutput.append(root.data)
+        return leftOutput
+
+    rightOutput = nodeToRootPath(root.right,x)
+    if rightOutput != None:
+        rightOutput.append(root.data)
+        return rightOutput
+    else:
+        return None
+
+
+#BST node to root path
+def nodeToRootBST(root,x):
+    if root is None:
+        return None
+
+    if root.data == x:
+        l = []
+        l.append(root.data)
+        return l
+
+    if root.data > x:
+        leftOutput = nodeToRootBST(root.left,x)
+        if leftOutput != None:
+            leftOutput.append(root.data)
+            return leftOutput
+    if root.data <= x:
+        rightOutput = nodeToRootPath(root.right,x)
+        if rightOutput != None:
+            rightOutput.append(root.data)
+            return rightOutput
+    else:
+        return None
+
+
+def allRootToLeaf(root):
+    l=[]
+    twoD = []
+    helper(root,l,twoD)
+    return (twoD)
+
+def helper(root,l,twoD):
+    if root is None:
+        return
+    l.append(root.data)
+    if root.left is None and root.right is None:
+        twoD.append(list(l))  #todo, should copy a list so write list(l) function or l[:]
+        # print(l)
+        # for i in l:
+        #     print(i,end=' ')
+        # print()
+    helper(root.left,l,twoD)
+    helper(root.right,l,twoD)
+    l.pop()
+
+
+def pathSum(root, targetSum):
+    result = []
+    helperpathsum(root,targetSum,[],result)
+    return (len(result), result)
+
+
+def helperpathsum(node,S,path, result):
+    if node is None:
+        return
+    path.append(node.data)
+    if node.left == None and node.right == None and sum(path) == S:
+        result.append(path[:])  #todo, should copy a list so write list(l) function or l[:]
+    helperpathsum(node.left,S, path,result)
+    helperpathsum(node.right,S, path,result)
+    path.pop()
+        

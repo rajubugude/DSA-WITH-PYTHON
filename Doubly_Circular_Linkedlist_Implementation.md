@@ -1,5 +1,5 @@
-# DOUBLY LINKEDLIST Implementation
-
+### DOUBLY LINKEDLIST Implementation
+```
 #class Node:
 #     def __init__(self,data):
 #         self.data = data
@@ -81,11 +81,11 @@
 # # temp1.prev = head
 # # temp1.next = temp2
 # # temp2.prev = temp1
+```
 
 
-
-# CIRCULAR LINKEDLIST Implementation
-
+### CIRCULAR LINKEDLIST Implementation
+```
 class Node:
     def __init__(self,data):
         self.data = data
@@ -174,9 +174,6 @@ def del_kth(head,k):
         return head
 
 
-
-
-
 #driver code
 head = Node(5)
 head.next = Node(10)
@@ -187,4 +184,4 @@ head.next.next.next = head #make circular
 # h = insertENDCLL(head,3)
 h = delete_head(head)
 printCLL(h)
-
+```
